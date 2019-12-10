@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "E:\mybatis-generator-config_1_0.dtd">
+<!--重复生成同一个表先删除mapper.xml overwrite有问题-->
+<generatorConfiguration>
+    <!--<properties resource="application-dev.properties"/>-->
+    <properties resource="application.properties"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <!--<property name="mappers" value="tk.mybatis.springboot.util.BaseMapper"/>-->
+            <!--在新创建的Mapper中，自动引入BaseMapper 包位置-->
+            <!--<property name="mapper" value="com.seven.shop.admin.dao"/>-->
+        </plugin>
+
+        <!--数据库连接配置-->
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.connectionURL}"
+                        userId="${jdbc.username}"
+                        password="${jdbc.password}">
+        </jdbcConnection>
+
+        <!--实体生成位置-->
+        <javaModelGenerator targetPackage="com.seven.shop.domain.entity" targetProject="src/main/java"/>
+        <!--<javaModelGenerator targetPackage="tk.mybatis.springboot.model" targetProject="src/main/java"/>-->
+
+        <!--Mapper.xml 生成位置-->
+        <sqlMapGenerator targetPackage="mybatis.mapper" targetProject="src/main/resources"/>
+
+        <!--Mapper 生成位置-->
+        <javaClientGenerator targetPackage="com.seven.shop.admin.dao" targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+
+        <!--生成表与实体 配置-->
+        <table tableName="tb_content" domainObjectName="TbContent">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+        <table tableName="tb_content_category" domainObjectName="TbContentCategory">
+            <property name="useActualColumnNames" value="false"></property>
+        </table>
+
+
+
+    </context>
+</generatorConfiguration>

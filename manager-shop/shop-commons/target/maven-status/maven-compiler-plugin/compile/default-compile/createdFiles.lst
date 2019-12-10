@@ -1,0 +1,11 @@
+com\seven\shop\commons\validator\BeanValidator.class
+com\seven\shop\commons\persistence\BaseService.class
+com\seven\shop\commons\persistence\BaseTreeDao.class
+com\seven\shop\commons\persistence\BaseTreeService.class
+com\seven\shop\commons\persistence\BaseEntity.class
+com\seven\shop\commons\utils\RegexpUtils.class
+com\seven\shop\commons\dto\BaseResult.class
+com\seven\shop\commons\dto\PageInfo.class
+com\seven\shop\commons\persistence\BaseDao.class
+com\seven\shop\commons\constant\ConstantUtils.class
+com\seven\shop\commons\persistence\BaseTreeEntity.class
