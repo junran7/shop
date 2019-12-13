@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
  **/
 public class MyIntercepter implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        TbUser tbUser = (TbUser) request.getSession().getAttribute(ConstantUtils.SESSION_USER);
+//        TbUser tbUser = (TbUser) request.getSession().getAttribute(ConstantUtils.SESSION_USER);
 
-        if(ObjectUtils.isEmpty(tbUser)){
-            response.sendRedirect("login");
-        }
+//        if(ObjectUtils.isEmpty(tbUser)){
+//            response.sendRedirect("login");
+//        }
         return true;
     }
 

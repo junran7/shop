@@ -106,6 +106,14 @@ var App = function () {
      */
     var handlerInitDataTables = function (url,columns) {
         var _dataTable = $('#dataTable').DataTable({
+            "paging": true,
+            "info": true,
+            "lengthChange": false,
+            "ordering": false,
+            "processing": true,
+            "searching": false,
+            "deferRender": true,
+
             "aoColumnDefs": [{"bSortable": false, "aTargets": [0]}],//指定某列不排序
             "bLengthChange": true, //开关，是否显示每页显示多少条数据的下拉框
             "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "所有"]],//设置每页显示数据条数的下拉选项
@@ -143,8 +151,7 @@ var App = function () {
             "bServerSide": true,
 
             "ajax": {
-                "url": "/page",
-                "type": "GET"
+                "url": url
             },
             "columns": columns,
             "drawCallback": function( settings ) {

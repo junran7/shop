@@ -46,13 +46,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/list" class="nav-link">
+                                    <a href="/user/list" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>用户列表</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/form" class="nav-link">
+                                    <a href="/user/form" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>新增用户</p>
                                     </a>
@@ -72,13 +72,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/list" class="nav-link">
+                                    <a href="/content/list" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>内容分类</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/form" class="nav-link">
+                                    <a href="/content/form" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>内容列表</p>
                                     </a>

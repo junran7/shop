@@ -1,141 +1,135 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!--加载自定义模态框tag-->
 <%@ taglib prefix="sys" tagdir="/WEB-INF/tags/sys" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>我的商城 | 内容管理</title>
-    <jsp:include page="../include/header.jsp" />
+    <title>内容管理</title>
+    <jsp:include page="../include/header.jsp"/>
+    <link rel="stylesheet" href="/static/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition sidebar-mini">
 <div class="wrapper">
-    <jsp:include page="../include/nav.jsp" />
-    <jsp:include page="../include/menu.jsp" />
-
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                内容管理
-                <small></small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li class="active">控制面板</li>
-            </ol>
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-xs-12">
-                    <c:if test="${baseResult != null}">
-                        <div class="alert alert-${baseResult.status == 200 ? "success" : "danger"} alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                ${baseResult.message}
-                        </div>
-                    </c:if>
-
-                    <div class="box box-info box-info-search" style="display: none;">
-                        <div class="box-header">
-                            <h3 class="box-title">高级搜索</h3>
-                        </div>
-
-                        <div class="box-body">
-                            <div class="row form-horizontal">
-                                <div class="col-xs-12 col-sm-3">
-                                    <div class="form-group">
-                                        <label for="title" class="col-sm-4 control-label">标题</label>
-
-                                        <div class="col-sm-8">
-                                            <input id="title" class="form-control" placeholder="标题" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-3">
-                                    <div class="form-group">
-                                        <label for="subTitle" class="col-sm-4 control-label">子标题</label>
-
-                                        <div class="col-sm-8">
-                                            <input id="subTitle" class="form-control" placeholder="子标题" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-3">
-                                    <div class="form-group">
-                                        <label for="titleDesc" class="col-sm-4 control-label">标题描述</label>
-
-                                        <div class="col-sm-8">
-                                            <input id="titleDesc" class="form-control" placeholder="标题描述" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="box-footer">
-                            <button type="button" class="btn btn-info pull-right" onclick="search();">搜索</button>
-                        </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">内容列表</h3>
-                        </div>
-
-                        <div class="box-body">
-                            <a href="/content/form" type="button" class="btn btn-sm btn-default"><i class="fa fa-plus"></i> 新增</a>&nbsp;&nbsp;&nbsp;
-                            <button type="button" class="btn btn-sm btn-default" onclick="App.deleteMulti('/content/delete')"><i class="fa fa-trash-o"></i> 删除</button>&nbsp;&nbsp;&nbsp;
-                            <a href="#" type="button" class="btn btn-sm btn-default"><i class="fa fa-download"></i> 导入</a>&nbsp;&nbsp;&nbsp;
-                            <a href="#" type="button" class="btn btn-sm btn-default"><i class="fa fa-upload"></i> 导出</a>&nbsp;&nbsp;&nbsp;
-                            <button type="button" class="btn btn-sm btn-primary" onclick="$('.box-info-search').css('display') == 'none' ? $('.box-info-search').show('fast') : $('.box-info-search').hide('fast')"><i class="fa fa-search"></i> 搜索</button>
-                        </div>
-
-                        <!-- /.box-header -->
-                        <div class="box-body table-responsive">
-                            <table id="dataTable" class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th><input type="checkbox" class="minimal icheck_master" /></th>
-                                    <th>ID</th>
-                                    <th>所属分类</th>
-                                    <th>标题</th>
-                                    <th>子标题</th>
-                                    <th>标题描述</th>
-                                    <th>链接</th>
-                                    <th>图片1</th>
-                                    <th>图片2</th>
-                                    <th>更新时间</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <jsp:include page="../include/copyright.jsp" />
+    <jsp:include page="../include/nav.jsp"/>
 </div>
 
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../include/menu.jsp"/>
 
-<!-- 自定义模态框 -->
-<sys:modal />
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">内容管理</h1>
+                </div>
+
+                <!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/main">Home</a></li>
+                        <li class="breadcrumb-item active">Version 3</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <!-- Form Element sizes -->
+    <div class="card card-info card-info-search" style="display:none;">
+        <div class="card-header">
+            <h3 class="card-title">Advanced Search</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-2">
+                    <input cssClass="form-control" id="title" name="title" placeholder="Title"/>
+                </div>
+                <div class="col-2">
+                    <input cssClass="form-control" id="subTitle" name="subTitle" placeholder="SubTitle"/>
+                </div>
+                <div class="col-2">
+                    <input cssClass="form-control" id="titleDesc" name="titleDesc" placeholder="TitleDesc"/>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-info" onclick="search()">Search</button>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+    <!-- /.content-header -->
+    <div class="row" style="padding-left: 12px;padding-top: 10px; padding-bottom: 15px;">
+        <a href="#" type="button" class="btn btn-info btn-sm">insert</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-info btn-sm" onclick="App.deleteMulti('/content/delete');">del</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#" type="button" class="btn btn-info btn-sm">import</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-info btn-sm">export</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-info btn-sm"
+                onclick="$('.card-info-search').css('display') == 'none' ? $('.card-info-search').show('fast') : $('.card-info-search').hide('fast')">
+            search
+        </button>
+    </div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Content Table</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="dataTable" class="display table table-bordered table-hover table-head-fixed">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" class="minimal icheck_master"/>
+                                </th>
+                                <th>ID</th>
+                                <th>CategoryName</th>
+                                <th>Title</th>
+                                <th>SubTitle</th>
+                                <th>TitleDesc</th>
+                                <th>Url</th>
+                                <th>Pic</th>
+                                <th>Pic2</th>
+                                <th>Content</th>
+                                <th>Updated</th>
+                                <th>Operate</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<jsp:include page="../include/footer.jsp"/>
+<!-- 引入自定义模态框 放在footer.js 需要jQuery,footer 完后jQuery加载进来  -->
+<sys:modal/>
+<script src="/static/assets/plugins/datatables/jquery.dataTables.js"></script>
+<script src="/static/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<script src="/static/assets/app/dateutil.js"></script>
 
 <script>
     var _dataTable;
-
     $(function () {
         var _columns = [
             {
@@ -143,13 +137,13 @@
                     return '<input id="' + row.id + '" type="checkbox" class="minimal" />';
                 }
             },
-            {"data": "id"},
-            {"data": "tbContentCategory.name"},
-            {"data": "title"},
-            {"data": "subTitle"},
-            {"data": "titleDesc"},
+            {data: 'id'},
+            {data: 'tbContentCategory.name'},
+            {data: 'title'},
+            {data: 'subTitle'},
+            {data: 'titleDesc'},
             {
-                "data": function (row, type, val, meta) {
+                data: function (row, type, val, meta) {
                     if (row.url == null) {
                         return '';
                     }
@@ -158,7 +152,7 @@
                 }
             },
             {
-                "data": function (row, type, val, meta) {
+                data: function (row, type, val, meta) {
                     if (row.pic == null) {
                         return '';
                     }
@@ -167,7 +161,7 @@
                 }
             },
             {
-                "data": function (row, type, val, meta) {
+                data: function (row, type, val, meta) {
                     if (row.pic2 == null) {
                         return '';
                     }
@@ -176,12 +170,12 @@
                 }
             },
             {
-                "data": function (row, type, val, meta) {
-                    return DateTime.format(row.updated, "yyyy-MM-dd HH:mm:ss");
+                data: function (row, type, val, meta) {
+                    return DateOper.getDateByTimeStamp(row.updated);
                 }
             },
             {
-                "data": function (row, type, val, meta) {
+                data: function (row, type, val, meta) {
                     var detailUrl = "/content/detail?id=" + row.id;
                     var deleteUrl = "/content/delete";
                     return '<button type="button" class="btn btn-sm btn-default" onclick="App.showDetail(\'' + detailUrl + '\');"><i class="fa fa-search"></i> 查看</button>&nbsp;&nbsp;&nbsp;' +
@@ -195,6 +189,9 @@
 
     });
 
+    /**
+     * 高级搜索
+     */
     function search() {
         var title = $("#title").val();
         var subTitle = $("#subTitle").val();
@@ -209,6 +206,8 @@
         _dataTable.settings()[0].ajax.data = param;
         _dataTable.ajax.reload();
     }
+
+
 </script>
 </body>
 </html>

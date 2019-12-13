@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title> userlist | Back</title>
+    <title> UserAdd | Back</title>
     <jsp:include page="../include/header.jsp" />
 </head>
 <body class="hold-transition sidebar-mini">

@@ -20,6 +20,7 @@ import java.util.*;
  * @Date 2019/11/13 15:03
  **/
 @Controller
+@RequestMapping(value = "user")
 public class UserController extends AbstractBaseController<TbUser,TbUserService> {
 
 

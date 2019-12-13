@@ -68,7 +68,7 @@
     <!-- /.content-header -->
     <div class="row" style="padding-left: 12px;padding-top: 10px; padding-bottom: 15px;">
         <a href="#" type="button" class="btn btn-info btn-sm">insert</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" class="btn btn-info btn-sm" onclick="App.deleteMulti('/delete');">del</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-info btn-sm" onclick="App.deleteMulti('/user/delete');">del</button>&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="#" type="button" class="btn btn-info btn-sm">import</a>&nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" class="btn btn-info btn-sm">export</button>&nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" class="btn btn-info btn-sm"
@@ -143,16 +143,16 @@
             },
             {
                 "data": function (row, type, val, meta) {
-                    var detailUrl = "/detail?id=" + row.id;
-                    var deleteUrl = "/delete";
+                    var detailUrl = "/user/detail?id=" + row.id;
+                    var deleteUrl = "/user/delete";
                     return '<button type="button" class="btn btn-sm btn-default" onclick="App.showDetail(\'' + detailUrl + '\');"><i class="fa fa-search"></i> 查看</button>&nbsp;&nbsp;&nbsp;' +
-                        '<a href="/form?id=' + row.id + '" type="button" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> 编辑</a>&nbsp;&nbsp;&nbsp;' +
+                        '<a href="/user/form?id=' + row.id + '" type="button" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> 编辑</a>&nbsp;&nbsp;&nbsp;' +
                         '<button type="button" class="btn btn-sm btn-danger" onclick="App.deleteSingle(\'' + deleteUrl + '\', \'' + row.id + '\')"><i class="fa fa-trash-o"></i> 删除</button>';
                 }
             }
         ];
 
-        _dataTable = App.initDataTables("/page",_columns);
+        _dataTable = App.initDataTables("/user/page",_columns);
 
     });
 
