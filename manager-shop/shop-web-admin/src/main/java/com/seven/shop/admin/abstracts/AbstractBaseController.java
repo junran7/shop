@@ -1,5 +1,6 @@
 package com.seven.shop.admin.abstracts;
 
+import com.seven.shop.admin.dao.Test;
 import com.seven.shop.commons.dto.BaseResult;
 import com.seven.shop.commons.dto.PageInfo;
 import com.seven.shop.commons.persistence.BaseEntity;
@@ -86,6 +87,36 @@ public abstract class AbstractBaseController<T extends BaseEntity, S extends Bas
 
         return pageInfo;
     }
+    /**
+     * 分页查询
+     *
+     * @param request
+     * @param entity
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "page", method = RequestMethod.POST)
+    public PageInfo<T> page1(HttpServletRequest request, T entity,Test test) {
+        String strDraw = test.getDraw();
+        String strStart = test.getStart();
+        String strLength = test.getLength();
+
+        int draw = strDraw == null ? 0 : Integer.parseInt(strDraw);
+        int start = strStart == null ? 0 : Integer.parseInt(strStart);
+        int length = strLength == null ? 10 : Integer.parseInt(strLength);
+
+//        Map map =new HashMap();
+//        map.put("start",start);
+//        map.put("length",length);
+//        map.put("draw",draw);
+//        map.put("entity",entity);
+
+        // 封装 Datatables 需要的结果
+        PageInfo<T> pageInfo = service.page(start, length, draw, entity);
+
+        return pageInfo;
+    }
+
 
     /**
      * 跳转详情页

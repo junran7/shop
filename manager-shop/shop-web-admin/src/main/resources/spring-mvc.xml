@@ -13,7 +13,8 @@
 
     <!--使用注解自动注入bean , 只扫描Controller层-->
     <!--1.为什么要在spring-mvc.xml过滤器添加 use-default-filters=’false’。
-        因为use-default-filters用来指示是否自动扫描带有 @Component、@Repository、@Service和@Controller的类。默认为true，即默认扫描。而我们要求只是扫描Controller.-->
+        因为use-default-filters用来指示是否自动扫描带有 @Component、@Repository、@Service和@Controller的类。默认为true，即默认扫描。
+        而我们要求只是扫描Controller.-->
     <context:component-scan base-package="com.seven.shop" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
@@ -36,6 +37,7 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/login" />
+            <!--上传文件放在static文件夹下，因此设置不拦截static-->
             <mvc:exclude-mapping path="/static/**" />
             <bean class="com.seven.shop.admin.intercepter.MyIntercepter" />
         </mvc:interceptor>
@@ -45,6 +47,11 @@
             <bean class="com.seven.shop.admin.intercepter.PermissionIntercepter" />
         </mvc:interceptor>
     </mvc:interceptors>
+
+    <!-- 上传文件拦截，设置最大上传文件大小 10M = 10*1024*1024(B) = 10485760 bytes -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="${web.maxUploadSize}"/>
+    </bean>
 
 
 </beans>

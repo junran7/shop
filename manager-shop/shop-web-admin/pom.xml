@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>shop-web-admin</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>shop-web-admin</name>
     <description></description>
@@ -23,11 +23,17 @@
             <artifactId>shop-commons</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.seven</groupId>
-            <artifactId>shop-web-api</artifactId>
+            <artifactId>shop-domain</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.seven</groupId>-->
+            <!--<artifactId>shop-web-api</artifactId>-->
+            <!--<version>${project.parent.version}</version>-->
+        <!--</dependency>-->
         <!--seven shop End-->
 
         <!-- Test Begin -->
@@ -82,17 +88,22 @@
             <artifactId>spring-jdbc</artifactId>
         </dependency>
         <!-- Database End -->
-        <!-- Jackson Begin -->
+
+        <!-- fileupload Begin -->
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.3</version>
         </dependency>
-        <!--jackson-core -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-        </dependency>
-        <!-- Jackson End -->
+        <!-- fileupload End -->
+
+        <!-- /commons-io Begin -->
+        <!--<dependency>-->
+            <!--<groupId>commons-io</groupId>-->
+            <!--<artifactId>commons-io</artifactId>-->
+            <!--<version>2.6</version>-->
+        <!--</dependency>-->
+        <!-- /commons-io End -->
 
     </dependencies>
 

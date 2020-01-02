@@ -3,13 +3,14 @@ package com.seven.shop.admin.controller;
 import com.seven.shop.admin.abstracts.AbstractBaseController;
 import com.seven.shop.admin.service.TbContentService;
 import com.seven.shop.commons.dto.BaseResult;
-import com.seven.shop.commons.persistence.BaseEntity;
 import com.seven.shop.domain.entity.TbContent;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -90,12 +91,31 @@ public class ContentController extends AbstractBaseController<TbContent,TbConten
      * @return
      */
     @Override
+    @ResponseBody
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
     public BaseResult delete(String ids) {
-        return null;
+        BaseResult baseResult = null;
+        if (StringUtils.isNotBlank(ids)) {
+            String[] idArray = ids.split(",");
+            Long[] idLongs=new Long[idArray.length];
+            int i = 0;
+            for (String s : idArray) {
+                long l = Long.parseLong(s);
+                idLongs[i] = l;
+                i++;
+            }
+            service.deleteMulti(idLongs);
+            baseResult = BaseResult.success("删除内容成功");
+        } else {
+            baseResult = BaseResult.fail("删除内容失败");
+        }
+
+        return baseResult;
     }
 
     @Override
+    @RequestMapping(value = "detail", method = RequestMethod.GET)
     public String detail() {
-        return null;
+        return "contentdetail";
     }
 }

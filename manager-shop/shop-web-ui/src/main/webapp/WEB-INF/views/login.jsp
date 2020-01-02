@@ -1,123 +1,95 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>login</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="/static/assets/plugins/fontawesome-free/css/all.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet" href="/static/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="/static/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="/static/assets/plugins/jqvmap/jqvmap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="/static/assets/dist/css/adminlte.min.css">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="/static/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="/static/assets/plugins/daterangepicker/daterangepicker.css">
-    <!-- summernote -->
-    <link rel="stylesheet" href="/static/assets/plugins/summernote/summernote-bs4.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+    <title>MyShop | 登录</title>
+    <link rel="stylesheet" href="/static/css/index.css"/>
+    <link rel="stylesheet" href="/static/css/ziy.css"/>
 </head>
-<body class="hold-transition login-page">
+<body>
+<!--dengl-->
+<div class="beij_center">
+    <div class="dengl_logo">
+        <a href="/index"><img src="/static/images/logo_1.png"></a>
+        <h1>欢迎登录</h1>
+    </div>
+</div>
+<div class="dengl_beij">
 
-<div class="login-box">
-    <!-- /.login-logo -->
-    <div class="card">
-        <div class="card-body login-card-body">
-            <p class="login-box-msg">Sign in to start your session</p>
-
-            <form action="/login" method="post">
-                <!--两种方式实现：页面逻辑判断-->
-                <!--1.jstl : 需要配置c标签-->
-                <%--<c:if test="${message != null}">--%>
-                <%--<div class="alert alert-danger alert-dismissible">--%>
-                <%--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>--%>
-                <%--${message}--%>
-                <%--</div>--%>
-                <%--</c:if>--%>
-                <!--2.内联中EL表达式判断-->
-                <div class="alert alert-danger alert-dismissible" ${message == null ? "style='display:none' ":""}>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    ${message}
-                </div>
-
-                <div class="input-group mb-3">
-                    <input name="email" type="email" class="form-control" placeholder="Email" value="${email}" >
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+    <div class="banner_xin">
+        <img src="/static/images/ss.jpg">
+    </div>
+    <div class="beij_center dengl_jvz">
+        <div class="login_form">
+            <div class="login_tab">
+                <h2>欢迎登录</h2>
+                <div class="dengl_erwm">
+                    <a href="#"><img src="/static/images/er_wm.png"></a>
+                    <div class="tanc_erwm_kuang">
+                        <img src="/static/images/mb_wangid.png">
+                        <div class="qrcode_panel">
+                            <ul>
+                                <li class="fore1">
+                                    <span>打开</span>
+                                    <a href="#" target="_blank"> <span class="red">手机MyShop</span></a>
+                                </li>
+                                <li>扫描二维码</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <input type="password" name="password" class="form-control" placeholder="Password" value="${password}" >
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-8">
-                        <div class="icheck-primary">
-                            <input type="checkbox" id="remember" name="isRemember"
-                            <c:if test="${isRemeber == true}">
-                                   checked="checked"
-                            </c:if>
-                            >
-                            <label for="remember">
-                                记住我
-                            </label>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                    </div>
-                    <!-- /.col -->
-                </div>
-            </form>
-
-            <div class="social-auth-links text-center mb-3">
-                <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                </a>
-                <a href="#" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                </a>
             </div>
-            <!-- /.social-auth-links -->
+            <div class="kengl_kuang">
+                <c:if test="${baseResult != null}">
+                    <div class="red">${baseResult.message}</div>
+                </c:if>
 
-            <p class="mb-1">
-                <a href="forgot-password.html">I forgot my password</a>
-            </p>
-            <p class="mb-0">
-                <a href="register.html" class="text-center">Register a new membership</a>
-            </p>
+                <form action="/login" method="post">
+                    <div class="txt_kuang">
+                        <input id="username" name="username" type="text" class="itxt" placeholder="邮箱/用户名/已验证手机">
+                        <input id="password" name="password" type="password" class="itxt" placeholder="密码">
+                        <input id="verification" name="verification" type="text" class="itxt" placeholder="验证码" style="width: 119px;">
+                        <img id="validateCode" src="/verification" style="float: right; padding-right: 23px; cursor: pointer;" title="看不清？换一张" />
+                    </div>
+                    <div class="remember">
+                        <div class="fl">
+                            <input type="checkbox">
+                            <label>自动登录</label>
+                        </div>
+                        <div class="fr">
+                            <a href="#" class="fl" target="_blank" title="忘记密码">忘记密码?</a>
+                        </div>
+                    </div>
+                    <input type="submit" tabindex="5" value="登 录" class="btnnuw">
+                </form>
+            </div>
+            <div class="corp_login">
+                <div class="mingb_shoq"><a href="#">名榜授权登录！</a></div>
+                <div class="regist_link"><a href="/register" target="_blank"><b></b>立即注册</a></div>
+            </div>
         </div>
-        <!-- /.login-card-body -->
     </div>
 </div>
 
-<!-- jQuery -->
-<script src="/static/assets/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/static/assets/dist/js/adminlte.min.js"></script>
 
+<div class="jianj_dib">
+    <div class="beia_hao">
+        <p>京ICP备：123456789号 </p>
+        <p class="gonga_bei">京公网安备：123456789号</p>
+    </div>
+</div>
+
+<script src="/static/js/jquery-1.11.3.min.js"></script>
+<script>
+    $(function () {
+        // 刷新验证码
+        $("#validateCode").bind("click", function () {
+            $(this).hide().attr('src', '/verification?' + Math.random()).fadeIn();
+        });
+    });
+</script>
 </body>
 </html>

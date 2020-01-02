@@ -3,23 +3,15 @@ package com.seven.shop.admin.service.impl;
 import com.seven.shop.admin.abstracts.AbstractBaseServiceImpl;
 import com.seven.shop.admin.dao.TbUserDao;
 import com.seven.shop.admin.service.TbUserService;
+import com.seven.shop.admin.validator.BeanValidator;
 import com.seven.shop.commons.dto.BaseResult;
-import com.seven.shop.commons.dto.PageInfo;
-import com.seven.shop.commons.utils.RegexpUtils;
-import com.seven.shop.commons.validator.BeanValidator;
 import com.seven.shop.domain.entity.TbUser;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
-import org.springframework.util.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @Author JR
@@ -54,10 +46,10 @@ public class TbUserServiceImpl extends AbstractBaseServiceImpl<TbUser, TbUserDao
     @Override
     public BaseResult save(TbUser tbUser) {
         // Hibernate validator 校验
-        String validator = BeanValidator.validator(tbUser);
-        if (!StringUtils.isEmpty(validator)) {
-            return BaseResult.fail(validator);
-        }
+//        String validator = BeanValidator.validator(tbUser);
+//        if (!StringUtils.isEmpty(validator)) {
+//            return BaseResult.fail(validator);
+//        }
 
         //通过验证
         tbUser.setUpdated(new Date());

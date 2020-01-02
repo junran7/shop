@@ -1,5 +1,8 @@
 package com.seven.shop.commons.dto;
 
+import com.seven.shop.commons.persistence.BaseEntity;
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,60 +11,53 @@ import java.io.Serializable;
  * @Author JR
  * @Date 2019/11/13 17:37
  **/
+@Data
 public class BaseResult implements Serializable {
 
-    public static final int SUCCESS_STATE =200;
-    public static final int FAIL_STATE =500;
+    public static final int SUCCESS_STATE = 200;
+    public static final int FAIL_STATE = 500;
 
     private int status;
 
     private String message;
 
-    public static BaseResult success(){
-        BaseResult baseResult = createBaseResult(SUCCESS_STATE, "SUCCESS");
+    private Object data;
+
+    public static BaseResult success() {
+        BaseResult baseResult = createBaseResult(SUCCESS_STATE, "SUCCESS",null);
         return baseResult;
 
     }
 
-    public static BaseResult fail(){
-        BaseResult baseResult = createBaseResult(FAIL_STATE, "FAIL");
+    public static BaseResult success(String message) {
+        BaseResult baseResult = createBaseResult(SUCCESS_STATE, message,null);
+        return baseResult;
+    }
+
+    public static BaseResult success(String message, Object obj) {
+        BaseResult baseResult = createBaseResult(SUCCESS_STATE, message, obj);
+        return baseResult;
+    }
+
+    public static BaseResult fail() {
+        BaseResult baseResult = createBaseResult(FAIL_STATE, "FAIL",null);
         return baseResult;
 
     }
 
-    public static BaseResult fail(String message){
-        BaseResult baseResult = createBaseResult(FAIL_STATE, message);
+    public static BaseResult fail(String message) {
+        BaseResult baseResult = createBaseResult(FAIL_STATE, message,null);
         return baseResult;
 
     }
 
-    public static BaseResult success(String message){
-        BaseResult baseResult = createBaseResult(SUCCESS_STATE, message);
+
+    public static BaseResult createBaseResult(int status, String message, Object obj) {
+        BaseResult baseResult = new BaseResult();
+        baseResult.status = status;
+        baseResult.message = message;
+        baseResult.data = obj;
         return baseResult;
     }
 
-    public static BaseResult createBaseResult(int status,String message){
-        BaseResult baseResult=new BaseResult();
-        baseResult.status=status;
-        baseResult.message=message;
-        return baseResult;
-    }
-
-
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }

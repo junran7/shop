@@ -3,13 +3,14 @@ package com.seven.shop.domain.entity;
 import com.seven.shop.commons.persistence.BaseEntity;
 import com.seven.shop.commons.utils.RegexpUtils;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.util.Date;
 
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class TbUser extends BaseEntity {
 
     @NotNull

@@ -169,6 +169,7 @@
                     return '<a href="' + row.pic2 + '" target="_blank">查看</a>';
                 }
             },
+            {data: 'content'},
             {
                 data: function (row, type, val, meta) {
                     return DateOper.getDateByTimeStamp(row.updated);

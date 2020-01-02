@@ -2,9 +2,9 @@ package com.seven.shop.domain.entity;
 
 import com.seven.shop.commons.persistence.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
  * @Date 2019/12/4 16:41
  **/
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class TbContent extends BaseEntity {
 
     @Length(min = 1, max = 20, message = "标题长度介于 1 - 20 个字符之间")

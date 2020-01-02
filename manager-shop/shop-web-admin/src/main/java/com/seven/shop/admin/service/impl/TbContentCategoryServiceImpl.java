@@ -4,8 +4,9 @@ import com.seven.shop.admin.abstracts.AbstractBaseTreeServiceImpl;
 import com.seven.shop.admin.dao.TbContentCategoryDao;
 import com.seven.shop.admin.service.TbContentCategoryService;
 import com.seven.shop.admin.service.TbContentService;
+import com.seven.shop.admin.validator.BeanValidator;
+import com.seven.shop.admin.validator.TestValidate;
 import com.seven.shop.commons.dto.BaseResult;
-import com.seven.shop.commons.validator.BeanValidator;
 import com.seven.shop.domain.entity.TbContentCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,12 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional(readOnly = true)//整个类都是只读的
 public class TbContentCategoryServiceImpl extends AbstractBaseTreeServiceImpl<TbContentCategory, TbContentCategoryDao> implements TbContentCategoryService {
 
     @Autowired
     private TbContentService tbContentService;
+
 
     /**
      * 保存分类
@@ -29,12 +31,15 @@ public class TbContentCategoryServiceImpl extends AbstractBaseTreeServiceImpl<Tb
      * @return
      */
     @Override
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = false)//操作数据库的方法需要事务
     public BaseResult save(TbContentCategory entity) {
-        String validator = BeanValidator.validator(entity);
-        if (validator != null) {
-            return BaseResult.fail(validator);
-        } else {
+//        TestValidate testValidate=new TestValidate();
+//        String aaaa = testValidate.aaaa;
+//
+//        String validator = BeanValidator.validator(entity);
+//        if (validator != null) {
+//            return BaseResult.fail(validator);
+//        } else {
             TbContentCategory parent = entity.getParent();
             // 如果没有选择父级节点则默认设置为根目录
             if (parent == null || parent.getId() == null) {
@@ -72,7 +77,7 @@ public class TbContentCategoryServiceImpl extends AbstractBaseTreeServiceImpl<Tb
                 update(entity);
             }
             return BaseResult.success("保存分类信息成功");
-        }
+//        }
     }
 
     /**

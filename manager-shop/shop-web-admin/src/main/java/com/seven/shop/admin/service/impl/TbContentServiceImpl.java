@@ -3,11 +3,11 @@ package com.seven.shop.admin.service.impl;
 import com.seven.shop.admin.abstracts.AbstractBaseServiceImpl;
 import com.seven.shop.admin.dao.TbContentDao;
 import com.seven.shop.admin.service.TbContentService;
+import com.seven.shop.admin.validator.BeanValidator;
+import com.seven.shop.admin.validator.TestValidate;
 import com.seven.shop.commons.dto.BaseResult;
-import com.seven.shop.commons.validator.BeanValidator;
 import com.seven.shop.domain.entity.TbContent;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,13 +23,16 @@ public class TbContentServiceImpl extends AbstractBaseServiceImpl<TbContent,TbCo
 
     @Override
     public BaseResult save(TbContent tbContent) {
-        String validator = BeanValidator.validator(tbContent);
-        if (!StringUtils.isBlank(validator)) {
-            return BaseResult.fail(validator);
-        }
+//        TestValidate testValidate=new TestValidate();
+//        String aaaa = TestValidate.aaaa;
+//        TestValidate.validator("aa");
+//        String validator = BeanValidator.validator(tbContent);
+//        if (!StringUtils.isBlank(validator)) {
+//            return BaseResult.fail(validator);
+//        }
 
         // 验证通过
-        else {
+//        else {
             tbContent.setUpdated(new Date());
 
             if(tbContent.getId() == null){
@@ -41,7 +44,7 @@ public class TbContentServiceImpl extends AbstractBaseServiceImpl<TbContent,TbCo
             else {
                 update(tbContent);
             }
-        }
+//        }
         return BaseResult.success("保存内容信息成功");
     }
 
